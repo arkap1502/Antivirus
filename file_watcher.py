@@ -7,6 +7,7 @@ Pause/Resume = Manual OFF/ON button.
 import json
 import os
 import string
+import sys
 import threading
 import time
 from pathlib import Path
@@ -14,7 +15,10 @@ from pathlib import Path
 from scanner_engine import scan_file
 from notifier import handle_threat, log_line
 
-BASE_DIR = Path(__file__).parent
+if getattr(sys, 'frozen', False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
 
 
 def load_config():

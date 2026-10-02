@@ -7,10 +7,17 @@ Stdlib only.
 import hashlib
 import json
 import os
+import sys
 import zipfile
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+def _base_dir():
+    # When built as .exe (PyInstaller), files live next to the exe
+    if getattr(sys, 'frozen', False):
+        return Path(sys.executable).parent
+    return Path(__file__).parent
+
+BASE_DIR = _base_dir()
 SIGNATURES_PATH = BASE_DIR / "signatures.json"
 
 # EICAR test string (safe industry-standard test virus - no harm, only for testing detection)

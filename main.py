@@ -7,9 +7,13 @@ Run:  python main.py
 """
 import atexit
 import signal
+import sys
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+if getattr(sys, 'frozen', False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
 
 from file_watcher import RealTimeWatcher
 from notifier import log_line

@@ -8,12 +8,16 @@ Thread-safe: watcher thread can call `handle_threat()`; popup is shown in Tk-saf
 import json
 import shutil
 import subprocess
+import sys
 import threading
 import time
 from datetime import datetime
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+if getattr(sys, 'frozen', False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
 LOG_FILE = BASE_DIR / "logs" / "protection.log"
 HISTORY_FILE = BASE_DIR / "logs" / "threat-history.json"
 QUARANTINE_DIR = BASE_DIR / "quarantine"

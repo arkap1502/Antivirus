@@ -1,0 +1,29 @@
+{
+  "app_name": "Laptop Antivirus",
+  "version": "1.0.0",
+  "auto_start_on_boot": true,
+  "auto_stop_on_shutdown": true,
+  "manual_override_allowed": true,
+  "require_pin_to_disable": false,
+  "disable_pin": "1234",
+  "auto_reenable_minutes": 15,
+  "real_time_scan": {
+    "apps": true,
+    "websites": true,
+    "images": true,
+    "videos": true,
+    "audio": true,
+    "files_and_folders": true,
+    "usb_devices": true,
+    "archives_inside_scan": true
+  },
+  "notifications_with_solution": true,
+  "critical_auto_quarantine": false,
+  "gaming_mode_mute": false,
+  "watch_folders": ["Desktop", "Documents", "Downloads", "Pictures", "Videos"],
+  "poll_interval_seconds": 2,
+  "quarantine_path": "quarantine",
+  "log_path": "logs/protection.log",
+  "history_path": "logs/threat-history.json",
+  "full_scan_schedule": "Sunday 14:00"
+}

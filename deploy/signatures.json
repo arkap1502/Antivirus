@@ -1,0 +1,41 @@
+{
+  "description": "Local signature DB. Add SHA256 hashes of known-malicious files here. EICAR test hash included so you can test detection safely.",
+  "bad_sha256": [
+    "275a021bbfb6489e54d471899f7db9d1663fc695ec2d4cff1a2a4a2837c88",
+    "44d88612fea8a8f36de82e1278abb02f"
+  ],
+  "bad_filenames": [
+    "crack-setup.exe",
+    "keygen.exe",
+    "free-money.exe",
+    "install-codec-to-play.mp4.exe"
+  ],
+  "phishing_keywords": [
+    "paypa1",
+    "faceb00k",
+    "free-money",
+    "verify-account-urgent",
+    "login-secure-update",
+    "bank-verify",
+    "fakelogin",
+    "apple-id-locked"
+  ],
+  "blocked_domains": [
+    "fakelogin-paypal.com",
+    "free-crypto-giveaway.xyz",
+    "verify-bank-account.tk"
+  ],
+  "suspicious_content_keywords": [
+    "mimikatz",
+    "ransomware",
+    "disabledefender",
+    "invoke-mimikatz",
+    "powershell -enc",
+    "powershell -encodedcommand",
+    "bitcoin wallet stealer",
+    "keylogger",
+    "trojan",
+    "<script>eval("
+  ],
+  "suspicious_extensions": [".exe", ".scr", ".bat", ".cmd", ".vbs", ".js", ".ps1", ".lnk", ".jar"]
+}

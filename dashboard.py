@@ -4,6 +4,7 @@ Tkinter (built-in) so it runs on any laptop without install.
 """
 import json
 import queue
+import sys
 import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, scrolledtext, ttk
@@ -15,7 +16,10 @@ from url_checker import check_url
 from notifier import (SEVERITY_COLOR, delete_file, load_history, log_line,
                       quarantine_file, restore_from_quarantine, save_history_entry, set_ui_callback)
 
-BASE_DIR = Path(__file__).parent
+if getattr(sys, 'frozen', False):
+    BASE_DIR = Path(sys.executable).parent
+else:
+    BASE_DIR = Path(__file__).parent
 
 
 class Dashboard(tk.Tk):

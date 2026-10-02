@@ -1,0 +1,39 @@
+LAPTOP ANTIVIRUS - DEPLOYED VERSION (no Python needed)
+================================================
+
+WHAT YOU GOT:
+- LaptopAntivirus.exe (11 MB, double-click to run)
+- config.json (settings)
+- signatures.json (virus patterns)
+- quarantine/ (threats locked here)
+- logs/ (protection.log + threat-history.json)
+- Install_LaptopAntivirus.bat (auto ON at boot installer)
+
+HOW TO USE:
+1. Keep all files in ONE folder (e.g. C:\LaptopAntivirus\).
+   Don't separate the .exe from config.json / signatures.json.
+
+2. Double-click LaptopAntivirus.exe
+   Green window = Protection ON. Minimize and use laptop normally.
+
+3. Test it:
+   - Custom Scan any file in test set, or
+   - Check Website button -> paste a phishing URL
+   - You get RED popup with solution: Quarantine / Delete / Allow
+
+4. Manual ON/OFF:
+   Big button in window. OFF auto turns back ON in 15 mins.
+
+5. Auto ON at boot (do once):
+   Right-click Install_LaptopAntivirus.bat -> Run as Administrator (or double-click)
+   Restart laptop to verify it auto-starts.
+
+6. Close window = safe shutdown (logs saved, vault locked).
+
+SHARE WITH FRIENDS:
+Zip this deploy folder and send. They just unzip + double-click exe + run installer bat.
+
+TROUBLESHOOT:
+- SmartScreen "Unknown app" -> More info -> Run anyway (normal for self-built exe).
+- Antivirus flags your own exe? Add folder exclusion in Windows Security.
+- Black window / no UI? Keep config.json + signatures.json next to exe.

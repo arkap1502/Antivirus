@@ -12,14 +12,29 @@ BASE_DIR = Path(__file__).resolve().parent
 MAIN_PY = BASE_DIR / "main.py"
 PY = sys.executable
 
+def _deploy_target():
+    # If running as .exe, autostart the exe itself. Else python main.py
+    if getattr(sys, 'frozen', False):
+        exe = Path(sys.executable)
+        return str(exe), None
+    return PY, str(MAIN_PY)
+
 
 def install_windows():
     msgs = []
+    exe_or_py, main_py = _deploy_target()
+    if main_py is None:
+        # .exe mode: launch exe directly
+        run_cmd = f'"{exe_or_py}"'
+        sched_cmd = f"'{exe_or_py}'"
+    else:
+        run_cmd = f'"{exe_or_py}" "{main_py}"'
+        sched_cmd = f"'{exe_or_py}' '{main_py}'"
     # 1. Startup folder .bat (simplest, works without admin)
     try:
         startup = Path(os.getenv("APPDATA")) / "Microsoft" / "Windows" / "Start Menu" / "Programs" / "Startup"
         launcher = startup / "LaptopAntivirus.bat"
-        launcher.write_text(f'@echo off\nstart "" /min "{PY}" "{MAIN_PY}"\n', encoding="utf-8")
+        launcher.write_text(f'@echo off\nstart "" /min {run_cmd}\n', encoding="utf-8")
         msgs.append(f"✅ Added to Startup folder: {launcher}")
     except Exception as e:
         msgs.append(f"⚠️ Startup folder failed: {e}")
@@ -28,7 +43,7 @@ def install_windows():
     try:
         r = subprocess.run(
             ["schtasks", "/create", "/tn", "LaptopAntivirus", "/tr",
-             f"'{PY}' '{MAIN_PY}'", "/sc", "onlogon", "/rl", "limited", "/f"],
+             sched_cmd, "/sc", "onlogon", "/rl", "limited", "/f"],
             capture_output=True, text=True, timeout=15)
         if r.returncode == 0:
             msgs.append("✅ Task Scheduler: runs at every logon (auto ON at boot).")
